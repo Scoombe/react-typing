@@ -6,21 +6,16 @@
     },
     "extends": "airbnb",
     "parserOptions": {
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
-            "jsx": true
-        },
+        "ecmaVersion": 6,
         "sourceType": "module"
     },
     "plugins": [
-        "react",
-        "recommended"
+        "react"
     ],
     "rules": {
-        "indent": [
-            "error",
-            "2"
-        ],
+        "react/jsx-filename-extension":[0, {"extensions": ".js"}],
+        "indent": ["error", 2        ],
+        "import/no-unresolved": "off",
         "linebreak-style": [
             "error",
             "windows"
