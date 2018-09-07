@@ -7,49 +7,75 @@ wordsPerMinTest = wordsPerMinTest.wordsPerMinTest;
 class TypingTest extends Component {
   constructor(props) {
     super(props);
-    this.wordsTest = new wordsPerMinTest(this.finishedFunction, 0.5);
+    const context = this;
+    this.wordsTest = new wordsPerMinTest( () => { context.finishedFunction(); }, 0.5);
     this.onInputChange = this.onInputChange.bind(this);
     this.countdown = this.countdown.bind(this);
+    this.finishedFunction = this.finishedFunction.bind(this);
+    this.getDisplayText = this.getDisplayText.bind(this);
+    this.countdown();
     this.state = {
       displayString: this.wordsTest.curDisplayText,
-      started: false,
     };
   }
 
+  onInputChange(event, value) {
+    this.checkKey(value.value);
+  }
 
   getDisplayText(clear, error) {
-    let displayString;
+    let displayText;
     if (clear) {
-      displayString = '';
+      displayText = '';
     }
     if (error) {
-      displayString += `${error}
+      displayText += `${error}
   `;
     }
-    displayString += `${this.wordsTest.curDisplayText}
-  words typed: ${this.wordsTest.wordCount}
-  word average WPM: ${this.wordsTest.lastTenAvWPM}
-  total average WPM: ${this.wordsTest.averageWPM}`;
-    this.setState(displayString, displayString);
+    displayText = (
+      <div>
+        <p>{this.wordsTest.curDisplayText}</p>
+        <p>{`words typed: ${this.wordsTest.wordCount}`}</p>
+        <p>{`word average WPM: ${this.wordsTest.lastTenAvWPM}`}</p>
+        <p>{`total average WPM: ${this.wordsTest.averageWPM}`}</p>
+      </div>
+    );
+    this.setState({ displayString: displayText });
   }
+
+  checkKey(value) {
+    if (this.wordsTest.started) {
+      const charCheck = this.wordsTest.checkKeyChar(value);
+      console.log(`key: ${value}`);
+      console.log(charCheck);
+      if (charCheck.isCharCorrect) {
+        this.getDisplayText(true);
+      }
+      else {
+        this.getDisplayText(true, charCheck.errorText);
+      }
+    }
+  }
+
 
   countdown() {
     const context = this;
     setTimeout(() => {
-      context.setState('displayString', '3');
+      context.setState({ displayString: '3' });
     }, 1000);
     setTimeout(() => {
-      context.setState('displayString', '2');
+      context.setState({ displayString: '2' });
     }, 2000);
     setTimeout(() => {
-      context.setState('displayString', '3');
-      context.wordsTest.Started = true;
+      context.setState({ displayString: '1' });
+      console.log(context.wordsTest);
+    }, 3000);
+    setTimeout(() => {
+      context.setState({ displayString: 'go' });
+      this.getDisplayText();
+      context.wordsTest.started = true;
       context.wordsTest.startStopWatch();
-    }, 1000);
-  }
-
-  onInputChange(event, value) {
-
+    }, 4000);
   }
 
   finishedFunction() {
@@ -61,7 +87,7 @@ class TypingTest extends Component {
     const { onInputChange } = this;
     return (
       <div>
-        { displayString }
+        <p>{ displayString }</p>
         <Input placeholder="Type.." onChange={onInputChange} />
       </div>
     );
