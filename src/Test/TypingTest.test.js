@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from '../Components/App';
+import TypingTest from '../Components/TypingTest';
 
 it('renders without crashing', () => {
-  shallow(<App />);
+  shallow(<TypingTest />);
 });
