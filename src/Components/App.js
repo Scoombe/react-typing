@@ -1,7 +1,7 @@
 import React from 'react';
-import { 
+import {
   BrowserRouter as Router,
-  Route, 
+  Route,
   Switch,
 } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
