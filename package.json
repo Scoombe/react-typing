@@ -8,7 +8,7 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5",
+    "react-scripts": "^2.0.3",
     "semantic-ui-css": "^2.3.3",
     "semantic-ui-react": "^0.82.3",
     "wpmtest": "^1.3.2"
@@ -21,12 +21,17 @@
     "lint": "eslint .eslintrc.json src/** --fix --quiet"
   },
   "devDependencies": {
-    "eslint": "^5.4.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^3.1.0"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
