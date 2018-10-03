@@ -142,7 +142,7 @@ class Test extends Component {
   render() {
     const { displayString } = this.state;
     return (
-      <div>
+      <div className="typingTest">
         { displayString }
       </div>
     );
