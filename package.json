@@ -21,6 +21,8 @@
     "lint": "eslint .eslintrc.json src/** --fix --quiet"
   },
   "devDependencies": {
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
