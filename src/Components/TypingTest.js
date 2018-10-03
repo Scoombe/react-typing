@@ -131,7 +131,6 @@ class TypingTest extends Component {
 
   restart() {
     this.wordsTest.restartTest();
-    this.wordsTest.finishStopWatch();
     this.countdown();
   }
 
