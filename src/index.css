@@ -1,5 +1,14 @@
+@import 'reset.css';
+
+html,
+body {
+  min-width: 320px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Raleway', Lucida Grande, sans-serif;
 }
