@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - 'latest'
-  - '9.10.9'
+  - '10'
+  - '9'
 script:
   - npm run build
   - npm run test
