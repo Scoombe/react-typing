@@ -33,7 +33,8 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/Components/*"
+      "src/Components/**/*",
+      "src/Pages/**/*"
     ]
   },
   "browserslist": [
