@@ -8414,10 +8414,6 @@ use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
 
-user@0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/user/-/user-0.0.0.tgz#f27f1b23fc511f2a8efa40db55cfba123824e02a"
-
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -8811,13 +8807,12 @@ worker-farm@^1.5.2:
   dependencies:
     errno "~0.1.7"
 
-wpmtest@^1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/wpmtest/-/wpmtest-1.3.3.tgz#6133b76b0020bb90f27b0d5f6453ddc6425268f5"
+wpmtest@^1.3.5:
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/wpmtest/-/wpmtest-1.3.5.tgz#649a82f7349917a6a541505cde27a80dba33971b"
   dependencies:
     random-words "^1.1.0"
     timer-stopwatch "git+https://github.com/MickCrozier/timer-stopwatch.git"
-    user "0.0.0"
 
 wrap-ansi@^2.0.0:
   version "2.1.0"
