@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './TypingTest.css';
+import './Test.css';
 
 let wordsPerMinTest = require('wpmtest');
 // eslint-disable-next-line prefer-destructuring
 wordsPerMinTest = wordsPerMinTest.wordsPerMinTest;
 
-class TypingTest extends Component {
+class Test extends Component {
   constructor(props) {
     super(props);
     const context = this;
@@ -116,4 +116,4 @@ class TypingTest extends Component {
   }
 }
 
-export default TypingTest;
+export default Test;
