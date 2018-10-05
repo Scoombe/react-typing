@@ -1,15 +1,17 @@
 language: node_js
 node_js:
-  - '10'
-  - '9'
+- '10'
+- '9'
 script:
-  - npm run build
-  - npm run test
-  - npm run lint
+- npm run build
+- npm run test
+- npm run lint
 deploy:
   provider: pages
   skip-cleanup: true
-  github-token: $GITHUB_ACCESS_TOKEN
   keep-history: true
   on:
     branch: master
+env:
+  global:
+    secure: GGzOgCPq7PU0WFfS6T9ktFNb8hUfIaPfN4KJSYKdXEZdHVaTDhfWtQ81nmiq1/iLagBjnIQTXnSLoAVh+Sr/FzKBP4burxdKc3xR0zfU0hwa2cYZqFefL15NXfjYYUjJJLeXQFccWFmX0BoyiXG/OyI5h5JN8mBOgDS/Bkb/5OPK6yL4mZCaGzINRK0Sq+ehcEIGNM4WWIjaeJ53bp4c1745PCZ3EGEfHdSVOGpN1lsXqC03yyQ9li82cwKy2onDH0ZuKLRq520X5LdIGTvbwyVM6UjAhm5hDqXcoGSxjxw0sjyFOszvKv110w6NrUJf76O6qABOgD1ULb1CYNwHb/Qryhzn7BddnFRy+zB5HwwR1InNQjP6MZcBmDiWRy1GWqu7PKmpoaTRJxJhg68arxlBWDidkoLeveyRlRTYfUM1DMfoRta6z3l43nWwUD+0FFdkXpLCjm7h8woJUjz9MSq0Io1jcQfn5CatScKxGIUMLwE5xNYqFSGcBbnm6oh84X+VCkgPBZlgsHpTv2Yk62H7yzVeaKgqHds45Ua3o88RuteN90w6pJhEH9uc/0y/pzZ/1rr8Sj5jLmQBuec4xQgRUidsy5IAnv7/0kd/qlwQ7X+uxoMwg9QvSAWZG/ax9ATmi8hFRXxIvn5EiOU1LuCEItFZkgszZXY/EndruQw=
