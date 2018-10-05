@@ -74,14 +74,17 @@ class Test extends Component {
       <div>
         <ul>
           <li>
-            Words typed: <strong>{this.wordsTest.wordCount}</strong>
+            Words typed:
+            <strong>{this.wordsTest.wordCount}</strong>
           </li>
           <li>
-            Average words per minute <small>(last 10 seconds): </small>
+            Average words per minute
+            <small>(last 10 seconds): </small>
             <strong>{this.wordsTest.lastTenAvWPM}</strong>
           </li>
           <li>
-            Average words per minute <small>(total): </small>
+            Average words per minute
+            <small>(total): </small>
             <strong>{this.wordsTest.averageWPM}</strong>
           </li>
         </ul>
@@ -120,13 +123,15 @@ class Test extends Component {
 
   finishedFunction() {
     this.wordsTest.started = false;
-    this.setState({ displayString: (
-      <div>
-        <h3>Finished</h3>
-        {this.getStats()}
-        <button type="button" onClick={this.restart.bind(this)}>Retry</button>
-      </div>
-    ) });
+    this.setState({
+      displayString: (
+        <div>
+          <h3>Finished</h3>
+          {this.getStats()}
+          <button type="button" onClick={this.restart.bind(this)}>Retry</button>
+        </div>
+      ),
+    });
   }
 
   restart() {
