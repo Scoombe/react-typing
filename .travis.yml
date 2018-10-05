@@ -3,15 +3,6 @@ node_js:
 - '10'
 - '9'
 script:
-- npm run build
+- yarn run build
 - npm run test
 - npm run lint
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: 
-    secure: "j/xOr9fvivLGUXO4ADIOJy8DQwMS6O1rLuPfCEPIAlbtrWEuepZJWU3GXs2BT7IH2cICVsBhgv+NIZG/pHLkpGY5LjIQjY7mpRqW5iJRY8u/LHZw8rype0Ak6AVFhGqPrgpOIIOZ+zIeEIHq0PbBW1Kcnsm/12K1VcSQFMYOhpMd27/3Yvepvc/Pl8dX63/6GIglPIA84TFdoZLCdgdQM6l1rHby6+l64tJ1MtV1cNRjpJmges4YyDbPMA8E0pjAu91tzl862WGF6bvCQIZhrI3xGlw6br5+9y+UuPIsJvZuMGeswa6BzZSoK7NuD715br14feAe7KiIeU4JmjWv/23rOt7w6kobolGqujAhmlENkMbHVurb6uggCYpccDYFkc0kzIk5ahWGY6yNoFZB9je6pc3PFhKwSvT5LCcz3nuIPrKKh7x8cJCG/p4F3LUFH6EAF+QByRyRgxVnrs8ebsDJA1NLabgVjpiSv31o+0YkifTEevZRVvtZgVTj9OKhUBcNI+vnZKO38LPU909ubPCS2XOke+o1UknjmKxNFtuqhtly3IfUgPTvFXd+sfvuVAnBPM9EFe3aSyrgr0wJUqRuzyBosMrGScxS93BghskBTMEyHZU9kHYaomhfN65uPAHvul6dW3/tHPMKp6KyjW4aKAAUgK000Qg0svHQ0aY="
-  keep-history: true
-  on:
-    branch: master
-  local-dir: "/build"
