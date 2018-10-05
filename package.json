@@ -16,17 +16,27 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --colors",
+    "test:watch": "react-scripts test --env=jsdom --watchAll",
+    "test:coverage": "react-scripts test --env=jsdom --coverage --colors",
     "eject": "react-scripts eject",
     "lint": "eslint .eslintrc.json src/** --fix --quiet"
   },
   "devDependencies": {
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^3.1.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/Components/**/*",
+      "src/Pages/**/*"
+    ]
   },
   "browserslist": [
     ">0.2%",

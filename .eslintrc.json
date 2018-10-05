@@ -16,6 +16,12 @@
         "react/jsx-filename-extension":[0, {"extensions": ".js"}],
         "indent": ["error", 2        ],
         "import/no-unresolved": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
         "linebreak-style": [
             "error",
             "windows"
