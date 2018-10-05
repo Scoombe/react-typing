@@ -6,3 +6,10 @@ script:
   - npm run build
   - npm run test
   - npm run lint
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_ACCESS_TOKEN
+  keep-history: true
+  on:
+    branch: master
