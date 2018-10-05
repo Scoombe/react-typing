@@ -17,6 +17,12 @@
         "indent": ["error", 2        ],
         "import/no-unresolved": "off",
         "react/jsx-one-expression-per-line": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
         "linebreak-style": [
             "error",
             "windows"
