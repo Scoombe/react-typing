@@ -16,8 +16,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --coverage --colors",
+    "test": "react-scripts test --env=jsdom --colors",
     "test:watch": "react-scripts test --env=jsdom --watchAll",
+    "test:coverage": "react-scripts test --env=jsdom --coverage --colors",
     "eject": "react-scripts eject",
     "lint": "eslint .eslintrc.json src/** --fix --quiet"
   },
