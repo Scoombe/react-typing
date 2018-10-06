@@ -1,7 +1,21 @@
 .typingHeader {
     text-align: center;
 }
+.typingHeader h2.ui.header {
+    font-size: 1.1em;
+}
 .column {
     padding-left: 0% !important;
     padding-right: 0% !important;
+}
+.segment {
+    height: 100%;
+}
+.ui.header .sub.header {
+    margin-top: 1rem;
+}
+@media all and (min-width: 600px) {
+    .typingHeader h2.ui.header {
+        font-size: 1.71428571rem;
+    }
 }

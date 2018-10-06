@@ -41,32 +41,38 @@ class Test extends Component {
     }
 
     displayText = (
-      <div>
-        {
-          error !== undefined
-          && (
-            <p className="red">
-              {' '}
-              {error}
-              {' '}
-            </p>
-          )
-        }
-        {
-          clear === true
-          && (
-            <p>
-              {' '}
-              {displayString}
-              {' '}
-            </p>
-          )
-        }
-        <p>{this.wordsTest.curDisplayText}</p>
-        {this.getStats()}
+      <div className="displayText">
+        <div className={`error ${error ? 'show' : ''}`}>
+          {
+            error !== undefined
+            && (
+              <p className="red">
+                {' '}
+                {error}
+                {' '}
+              </p>
+            )
+          }
+          </div>
+          {
+            clear === true
+            && (
+              <p>
+                {' '}
+                {displayString}
+                {' '}
+              </p>
+            )
+          }
+          <p>{this.wordsTest.curDisplayText}</p>
+          {this.getStats()}
       </div>
     );
     this.setState({ displayString: displayText });
+  }
+
+  format(input) {
+    return input.toFixed(2)
   }
 
   getStats() {
@@ -80,12 +86,12 @@ class Test extends Component {
           <li>
             Average words per minute
             <small>(last 10 seconds): </small>
-            <strong>{this.wordsTest.lastTenAvWPM}</strong>
+            <strong>{this.format(this.wordsTest.lastTenAvWPM)}</strong>
           </li>
           <li>
             Average words per minute
             <small>(total): </small>
-            <strong>{this.wordsTest.averageWPM}</strong>
+            <strong>{this.format(this.wordsTest.averageWPM)}</strong>
           </li>
         </ul>
       </div>
@@ -128,7 +134,7 @@ class Test extends Component {
         <div>
           <h3>Finished</h3>
           {this.getStats()}
-          <button type="button" onClick={this.restart.bind(this)}>Retry</button>
+          <button type="button" className="retry" onClick={this.restart.bind(this)}>Retry</button>
         </div>
       ),
     });
@@ -141,8 +147,9 @@ class Test extends Component {
 
   render() {
     const { displayString } = this.state;
+
     return (
-      <div>
+      <div className="typingTest">
         { displayString }
       </div>
     );
