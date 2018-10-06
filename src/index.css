@@ -12,3 +12,7 @@ body {
   padding: 0;
   font-family: 'Raleway', Lucida Grande, sans-serif;
 }
+
+ul, li {
+  list-style-type: none;
+}
