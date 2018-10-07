@@ -41,17 +41,19 @@ class Test extends Component {
     }
 
     displayText = (
-      <div>
-        {
-          error !== undefined
-          && (
-            <p className="red">
-              {' '}
-              {error}
-              {' '}
-            </p>
-          )
-        }
+      <div className="displayText">
+        <div className={`error ${error ? 'show' : ''}`}>
+          {
+            error !== undefined
+            && (
+              <p className="red">
+                {' '}
+                {error}
+                {' '}
+              </p>
+            )
+          }
+        </div>
         {
           clear === true
           && (
@@ -70,22 +72,24 @@ class Test extends Component {
   }
 
   getStats() {
+    const { wordsTest } = this;
+
     return (
       <div>
         <ul>
           <li>
             Words typed:
-            <strong>{this.wordsTest.wordCount}</strong>
+            <strong>{wordsTest.wordCount}</strong>
           </li>
           <li>
             Average words per minute
             <small>(last 10 seconds): </small>
-            <strong>{this.wordsTest.lastTenAvWPM}</strong>
+            <strong>{wordsTest.lastTenAvWPM.toFixed(2)}</strong>
           </li>
           <li>
             Average words per minute
             <small>(total): </small>
-            <strong>{this.wordsTest.averageWPM}</strong>
+            <strong>{wordsTest.averageWPM.toFixed(2)}</strong>
           </li>
         </ul>
       </div>
@@ -128,7 +132,7 @@ class Test extends Component {
         <div>
           <h3>Finished</h3>
           {this.getStats()}
-          <button type="button" onClick={this.restart.bind(this)}>Retry</button>
+          <button type="button" className="retry" onClick={this.restart.bind(this)}>Retry</button>
         </div>
       ),
     });
@@ -141,8 +145,9 @@ class Test extends Component {
 
   render() {
     const { displayString } = this.state;
+
     return (
-      <div>
+      <div className="typingTest">
         { displayString }
       </div>
     );
