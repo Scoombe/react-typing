@@ -17,6 +17,7 @@
         "indent": ["error", 2        ],
         "import/no-unresolved": "off",
         "react/jsx-one-expression-per-line": "off",
+        "react/prop-types": "off",
         "import/no-extraneous-dependencies": [
             "error",
             {
