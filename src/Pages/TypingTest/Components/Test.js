@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
 
-let wordsPerMinTest = require('wpmtest');
-// eslint-disable-next-line prefer-destructuring
-wordsPerMinTest = wordsPerMinTest.wordsPerMinTest;
-
 class Test extends Component {
   constructor(props) {
     super(props);
-    const context = this;
-    // eslint-disable-next-line new-cap
-    this.wordsTest = new wordsPerMinTest(() => { context.finishedFunction(); }, 0.5);
+    const { getDisplayText } = this.props;
     this.onInputChange = this.onInputChange.bind(this);
     this.countdown = this.countdown.bind(this);
-    this.finishedFunction = this.finishedFunction.bind(this);
     this.setDisplayText = this.setDisplayText.bind(this);
-    this.countdown();
     this.state = {
-      displayString: this.wordsTest.curDisplayText,
+      displayString: getDisplayText(),
     };
   }
 
   componentDidMount() {
     document.addEventListener('keydown', this.onInputChange, false);
+    this.countdown();
   }
 
   componentWillUnmount() {
@@ -29,122 +22,41 @@ class Test extends Component {
   }
 
   onInputChange(event) {
-    this.checkKey(event.key);
-  }
-
-  setDisplayText(clear, error) {
-    let displayText;
-    const { displayString } = this.state;
-    if (clear) {
-      displayText = '';
-    }
-
-    displayText = (
-      <div className="displayText">
-        <div className={`error ${error ? 'show' : ''}`}>
-          {
-            error !== undefined
-            && (
-              <p className="red">
-                {' '}
-                {error}
-                {' '}
-              </p>
-            )
-          }
-        </div>
-        {
-          clear === true
-          && (
-            <p>
-              {' '}
-              {displayString}
-              {' '}
-            </p>
-          )
-        }
-        <p>{this.wordsTest.curDisplayText}</p>
-        {this.getStats()}
-      </div>
-    );
-    this.setState({ displayString: displayText });
-  }
-
-  getStats() {
-    const { wordsTest } = this;
-
-    return (
-      <div>
-        <ul>
-          <li>
-            Words typed:
-            <strong>{wordsTest.wordCount}</strong>
-          </li>
-          <li>
-            Average words per minute
-            <small>(last 10 seconds): </small>
-            <strong>{wordsTest.lastTenAvWPM.toFixed(2)}</strong>
-          </li>
-          <li>
-            Average words per minute
-            <small>(total): </small>
-            <strong>{wordsTest.averageWPM.toFixed(2)}</strong>
-          </li>
-        </ul>
-      </div>
-    );
-  }
-
-  countdown() {
-    const context = this;
-    setTimeout(() => {
-      context.setDisplayText(false, '3');
-    }, 1000);
-    setTimeout(() => {
-      context.setDisplayText(false, '2');
-    }, 2000);
-    setTimeout(() => {
-      context.setDisplayText(false, '1');
-    }, 3000);
-    setTimeout(() => {
-      context.setDisplayText(false, 'Go');
-      context.wordsTest.started = true;
-      context.wordsTest.startStopWatch();
-    }, 4000);
-  }
-
-  checkKey(value) {
-    if (this.wordsTest.started) {
-      const charCheck = this.wordsTest.checkKeyChar(value);
-      if (charCheck.isCharCorrect === true) {
-        this.setDisplayText(false);
+    const { checkKey } = this.props;
+    const keyCheck = checkKey(event.key);
+    if (keyCheck !== null) {
+      if (keyCheck.isCharCorrect === true) {
+        this.setDisplayText();
       } else {
-        this.setDisplayText(false, charCheck.errorText);
+        this.setDisplayText(keyCheck.errorText);
       }
     }
   }
 
-  finishedFunction() {
-    this.wordsTest.started = false;
-    this.setState({
-      displayString: (
-        <div>
-          <h3>Finished</h3>
-          {this.getStats()}
-          <button type="button" className="retry" onClick={this.restart.bind(this)}>Retry</button>
-        </div>
-      ),
-    });
+  setDisplayText(error) {
+    const { getDisplayText } = this.props;
+    const displayText = getDisplayText(error);
+    this.setState({ displayString: displayText });
   }
 
-  restart() {
-    this.wordsTest.restartTest();
-    this.countdown();
+  countdown() {
+    const context = this;
+    const { startStopWatch } = this.props;
+    context.setDisplayText('3');
+    setTimeout(() => {
+      context.setDisplayText('2');
+    }, 1000);
+    setTimeout(() => {
+      context.setDisplayText('1');
+    }, 2000);
+    setTimeout(() => {
+      context.setDisplayText('Type!');
+      startStopWatch();
+    }, 3000);
   }
 
   render() {
     const { displayString } = this.state;
-
     return (
       <div className="typingTest">
         { displayString }
