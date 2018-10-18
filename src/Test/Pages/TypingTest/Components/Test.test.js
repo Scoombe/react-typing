@@ -9,3 +9,15 @@ it('renders without crashing', () => {
 
   shallow(<Test {...props} />);
 });
+
+it('calls componentDidMount once', () => {
+  const spy = jest.spyOn(Test.prototype, 'componentDidMount');
+  const props = {
+    getDisplayText: () => 'test',
+  };
+
+  shallow(<Test {...props} />);
+
+  expect(spy).toHaveBeenCalled();
+  spy.mockRestore();
+});
