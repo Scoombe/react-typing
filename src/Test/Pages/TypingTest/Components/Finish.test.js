@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Finish from '../../../../Pages/TypingTest/Components/Finish';
-import { wrap } from 'module';
 
 it('renders without crashing', () => {
   const props = {
