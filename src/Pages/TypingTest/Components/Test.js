@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Test extends Component {
   constructor(props) {
@@ -64,5 +65,11 @@ class Test extends Component {
     );
   }
 }
+
+Test.propTypes = {
+  checkKey: PropTypes.func.isRequired,
+  startStopWatch: PropTypes.func.isRequired,
+  getDisplayText: PropTypes.func.isRequired,
+};
 
 export default Test;
