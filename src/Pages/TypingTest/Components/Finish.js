@@ -1,9 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Finish(props) {
-  const {
-    restart, wordCount, minutes, wpm, lastTenAvWPM, averageWPM,
-  } = props;
+const Finish = ({ restart, wordCount, minutes, wpm, lastTenAvWPM, averageWPM }) => {
   return (
     <div className="typingTest">
       <h3>You have Finished!</h3>
@@ -30,6 +28,15 @@ function Finish(props) {
       <button type="button" className="retry" onClick={restart}>Retry</button>
     </div>
   );
-}
+};
+
+Finish.propTypes = {
+  restart: PropTypes.func.isRequired,
+  wordCount: PropTypes.number.isRequired,
+  minutes: PropTypes.string.isRequired,
+  wpm: PropTypes.number.isRequired,
+  lastTenAvWPM: PropTypes.number.isRequired,
+  averageWPM: PropTypes.number.isRequired,
+};
 
 export default Finish;
