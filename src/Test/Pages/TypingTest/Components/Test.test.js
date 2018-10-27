@@ -1,9 +1,12 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Test from '../../../../Pages/TypingTest/Components/Test';
 
 const defaultProps = {
   getDisplayText: () => 'test',
+  checkKey: () => { 
+    return { isCharCorrect: true };
+  },
 };
 
 it('renders without crashing', () => {
@@ -27,5 +30,16 @@ it('adds keydown event listener in componentDidMount', () => {
   const wrapper = shallow(<Test {...defaultProps} />);
 
   expect(spy).toHaveBeenCalledWith('keydown', wrapper.instance().onInputChange, false);
+  spy.mockRestore();
+});
+
+it('calls onInputChange on keydown', () => {
+  const spy = jest.spyOn(Test.prototype, 'onInputChange');
+
+  mount(<Test {...defaultProps} />);
+
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
+
+  expect(spy).toHaveBeenCalled();
   spy.mockRestore();
 });
