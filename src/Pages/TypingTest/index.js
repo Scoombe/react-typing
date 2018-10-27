@@ -110,7 +110,6 @@ class TypingTest extends Component {
       lastTenAvWPM,
       averageWPM,
     } = this.wordsTest;
-    console.log(`wordCount: ${wordCount}, minutes ${minutes}`);
     const { restartTest } = this;
     return (
       <Finish
