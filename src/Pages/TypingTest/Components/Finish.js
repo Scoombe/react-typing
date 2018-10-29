@@ -9,9 +9,9 @@ function Finish(props) {
       <h3>You have Finished!</h3>
       <ul>
         <li>
-          <p>Words typed: <strong>{wordCount}</strong>
+          <p>Words typed: <strong>{wordCount} </strong>
+            in <strong>{minutes}</strong> minutes
           </p>
-          <p> In <strong>{minutes}</strong> minutes </p>
         </li>
         <li>
           Your WPM: <strong>{wpm}</strong>
