@@ -3,9 +3,9 @@ import { shallow, mount } from 'enzyme';
 import Test from '../../../../Pages/TypingTest/Components/Test';
 
 const defaultProps = {
-  getDisplayText: () => 'test',
-  checkKey: () => 'test',
-  startStopWatch: () => 'test',
+  getDisplayText: () => (<p>test</p>),
+  checkKey: () => ({ isCharCorrect: true, errorText: 'none' }),
+  startStopWatch: () => {},
 };
 
 it('renders without crashing', () => {
@@ -24,14 +24,14 @@ it('adds keydown event listener in componentDidMount', () => {
   expect(spy).toHaveBeenCalledWith('keydown', wrapper.instance().onInputChange, false);
   spy.mockRestore();
 });
-
+it(' updates the display text ', () => {
+  const wrapper = shallow(<Test {...defaultProps} />);
+  expect(wrapper.find('p').first().text()).toBe('test');
+});
 it('calls onInputChange on keydown', () => {
   const spy = jest.spyOn(Test.prototype, 'onInputChange');
-
   mount(<Test {...defaultProps} />);
-
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'a' }));
-
   expect(spy).toHaveBeenCalled();
   spy.mockRestore();
 });
