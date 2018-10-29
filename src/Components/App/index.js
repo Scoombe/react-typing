@@ -13,7 +13,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: {}
+      user: null,
     };
   }
 
@@ -33,9 +33,10 @@ class App extends Component {
   }
 
   render() {
+    const { user } = this.state;
     return (
       <div className="App">
-        <TypingHeader />
+        <TypingHeader userName={user} />
         <Router>
           <Switch>
             <Route exact path="/" component={TypingTest} />
