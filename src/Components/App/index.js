@@ -39,8 +39,9 @@ class App extends Component {
         <TypingHeader userName={user} />
         <Router>
           <Switch>
-            <Route exact path="/" component={TypingTest} />
+            <Route exact path="/" component={LoginPage} />
             <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/signup" component={LoginPage} />
           </Switch>
         </Router>
       </div>
