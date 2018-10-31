@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router-dom';
+import { browserHistory, withRouter } from 'react-router-dom';
 import {
   Grid, Header, Icon, Segment,
 } from 'semantic-ui-react';
@@ -17,8 +17,10 @@ class TypingHeader extends Component {
 
   handleClick(e) {
     const history = this.props;
-    history.push(e.currentTarget.dataset.route);
     console.log(e.currentTarget.dataset.route);
+    const route = e.currentTarget.dataset.route
+    console.log(this.props.history);
+    this.props.history.push(route);
   }
 
   render() {
@@ -63,7 +65,7 @@ class TypingHeader extends Component {
       </div>
     );
   }
-  
+
 }
 
-export default TypingHeader;
+export default withRouter(TypingHeader);

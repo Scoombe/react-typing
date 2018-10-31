@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom';
@@ -37,13 +36,11 @@ class App extends Component {
     return (
       <div className="App">
         <TypingHeader userName={user} />
-        <Router>
-          <Switch>
-            <Route exact path="/" component={LoginPage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/signup" component={LoginPage} />
-          </Switch>
-        </Router>
+        <Switch>
+          <Route exact path="/" component={TypingTest} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/signup" component={LoginPage} />
+        </Switch>
       </div>
     );
   }
