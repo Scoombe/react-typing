@@ -1,5 +1,5 @@
 import react, { Component } from 'react';
-import {Grid, Button, Input } from 'react-semantic-ui'; 
+import { Grid, Button, Input } from 'react-semantic-ui';
 
 class Signup extends Component {
   constructor(props) {
@@ -7,11 +7,10 @@ class Signup extends Component {
   }
 
   render() {
-    return(
+    return (
       <p> hello </p>
     );
-  };
-
-};
+  }
+}
 
 export default Signup;
