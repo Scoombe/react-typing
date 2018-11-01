@@ -3,7 +3,9 @@ import { withRouter } from 'react-router-dom';
 import {
   Grid, Form, Button, Input, Message,
 } from 'semantic-ui-react';
-import { signIn, createUser } from '../../core/firebase-functions';
+import {
+  signIn, createUser, checkUsername, createUsername,
+} from '../../core/firebase-functions';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -16,15 +18,17 @@ class LoginPage extends Component {
     this.onSignup = this.onSignup.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.signinCallback = this.signinCallback.bind(this);
+    this.checkUsernameCallback = this.checkUsernameCallback.bind(this);
+    this.createUserCallback = this.createUserCallback.bind(this);
   }
 
   onSubmit(e) {
     const { target } = e;
-    console.log(target.email);
-    console.log(`email: ${target.email.value} password: ${target.password.value}`);
+    this.email = target.email.value;
+    this.password = target.password.value;
+    this.username = target.username.value;
     if (this.signup) {
-      createUser(target.email.value, target.password.value,
-        target.username.value, this.signinCallback);
+      checkUsername(target.username.value, this.checkUsernameCallback, this.debugCallback);
     } else {
       signIn(target.email.value, target.password.value, this.signinCallback);
     }
@@ -37,11 +41,31 @@ class LoginPage extends Component {
     history.push('/signup');
   }
 
+  debugCallback(message) {
+    console.log(message);
+  } 
+
+  checkUsernameCallback(error) {
+    console.log(error);
+    if (error) {
+      this.setState({ error });
+    } else {
+      createUser(this.email, this.password, this.createUserCallback);
+    }
+  }
+
+  createUserCallback(error) {
+    if (error) {
+      this.setState({ error });
+    } else {
+      createUsername(this.username, this.signinCallback);
+    }
+  }
+
   signinCallback(error) {
     const { history } = this.props;
-    console.log(`error: ${error}`);
     if (error) {
-      this.setState({ error: error });
+      this.setState({ error });
     } else {
       history.push('/');
     }
@@ -69,7 +93,9 @@ class LoginPage extends Component {
               { this.signup && <Form.Field control={Input} label="Username" name="username" placeholder="Username" /> }
               <Form.Group inline>
                 <Form.Field control={Button}>{ buttonText }</Form.Field>
-                { !this.signup && <Form.Field control={Button} onClick={this.onSignup}>Create Account</Form.Field> }
+                { !this.signup
+                  && <Form.Field control={Button} onClick={this.onSignup}>Create Account</Form.Field>
+                }
               </Form.Group>
             </Form>
           </Grid.Column>
