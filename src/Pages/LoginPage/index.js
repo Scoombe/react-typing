@@ -26,8 +26,8 @@ class LoginPage extends Component {
     const { target } = e;
     this.email = target.email.value;
     this.password = target.password.value;
-    this.username = target.username.value;
     if (this.signup) {
+      this.username = target.username.value;
       checkUsername(target.username.value, this.checkUsernameCallback, this.debugCallback);
     } else {
       signIn(target.email.value, target.password.value, this.signinCallback);
@@ -84,7 +84,7 @@ class LoginPage extends Component {
                 />
               )}
               <Form.Field control={Input} label="Email" name="email" placeholder="Email" />
-              <Form.Field control={Input} type="password" name="password" label="Password" placeholder="Password" />
+              <Form.Field control={Input} type="password" name="password" label="Password" autoComplete="login-password" placeholder="Password" />
               { this.signup && <Form.Field control={Input} label="Username" name="username" placeholder="Username" /> }
               <Form.Group inline>
                 <Form.Field control={Button}>{ buttonText }</Form.Field>

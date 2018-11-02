@@ -13,11 +13,13 @@ class Test extends Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
     document.addEventListener('keydown', this.onInputChange, false);
     this.countdown();
   }
 
   componentWillUnmount() {
+    this.mounted = false;
     document.removeEventListener('keydown', this.onInputChange, false);
   }
 
@@ -34,9 +36,11 @@ class Test extends Component {
   }
 
   setDisplayText(error) {
-    const { getDisplayText } = this.props;
-    const displayText = getDisplayText(error);
-    this.setState({ displayString: displayText });
+    if (this.mounted) {
+      const { getDisplayText } = this.props;
+      const displayText = getDisplayText(error);
+      this.setState({ displayString: displayText });
+    }
   }
 
   countdown() {

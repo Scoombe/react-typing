@@ -4,6 +4,7 @@ import {
   Grid, Header, Icon, Segment,
 } from 'semantic-ui-react';
 
+import { signOut } from '../../core/firebase-functions';
 import './TypingHeader.css';
 
 class TypingHeader extends Component {
@@ -11,18 +12,20 @@ class TypingHeader extends Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     console.log(`typingHeader username: ${props.userName}`);
-    this.state = {
-      userName: props.userName,
-    };
   }
 
   handleClick(e) {
-    const { history } = this.props;
-    history.push(e.currentTarget.dataset.route);
+    const { history, userName } = this.props;
+    const { route } = e.currentTarget.dataset;
+    if (route === '/login' && userName !== null) {
+      signOut();
+    } else {
+      history.push(route);
+    }
   }
 
   render() {
-    const { userName } = this.state;
+    const { userName } = this.props;
     const loggedInHeading = userName !== null ? `hello ${userName}` : 'Log in!';
     const loggedInSubHeading = userName !== null ? 'Logout!' : 'Login to save your scores ';
     return (

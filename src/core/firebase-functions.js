@@ -37,6 +37,21 @@ export function signIn(email, password, callback) {
   });
 }
 
+export function signOut() {
+  auth.signOut();
+}
+
+export function getUsername(userId, callback) {
+  database.ref('usernames').orderByChild('userId').equalTo(userId).once('value', (snapshot) => {
+    if (snapshot.exists()) {
+      callback(Object.keys(snapshot.val())[0]);
+    } else {
+      callback(null);
+    }
+  });
+}
+
+
 export function getAllScores() {
 
 }

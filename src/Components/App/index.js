@@ -6,7 +6,8 @@ import {
 import TypingTest from '../../Pages/TypingTest';
 import TypingHeader from '../Header';
 import LoginPage from '../../Pages/LoginPage';
-import fire from '../../config/fire';
+import { firebaseAuth as auth } from '../../config/fire';
+import { getUsername } from '../../core/firebase-functions';
 
 class App extends Component {
   constructor() {
@@ -14,18 +15,23 @@ class App extends Component {
     this.state = {
       user: null,
     };
+    this.getUsernameCallback = this.getUsernameCallback.bind(this);
   }
 
   componentDidMount() {
     this.authListener();
   }
 
+  getUsernameCallback(username) {
+    if (username !== null) {
+      this.setState({ user: username });
+    }
+  }
+
   authListener() {
-    fire.auth().onAuthStateChanged((user) => {
-      console.log('user');
-      console.log(user);
+    auth.onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user: user.email });
+        getUsername(user.uid, this.getUsernameCallback);
       } else {
         this.setState({ user: null });
       }
@@ -34,7 +40,6 @@ class App extends Component {
 
   render() {
     const { user } = this.state;
-    console.log(`userState: ${user}`);
     return (
       <div className="App">
         <TypingHeader userName={user} />
