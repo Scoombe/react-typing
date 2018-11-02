@@ -5,6 +5,7 @@
   "dependencies": {
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
+    "firebase": "^5.5.5",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-router-dom": "^4.3.1",
