@@ -51,6 +51,19 @@ export function getUsername(userId, callback) {
   });
 }
 
+export function createScore(score, callback) {
+  if (auth.currentUser) {
+    const userScore = score;
+    userScore.userId = auth.currentUser.Id;
+    database.ref('scores').push(userScore).then(() => {
+      callback({ error: false, signIn: true });
+    }).catch(() => {
+      callback({ error: true, signedIn: true });
+    });
+  } else {
+    callback({ error: false, signedIn: false });
+  }
+}
 
 export function getAllScores() {
 
@@ -61,9 +74,5 @@ export function getUserScores(/** username */) {
 }
 
 export function getScoresOfTheDay() {
-
-}
-
-export function createScore() {
 
 }
