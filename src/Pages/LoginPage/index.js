@@ -41,12 +41,7 @@ class LoginPage extends Component {
     history.push('/signup');
   }
 
-  debugCallback(message) {
-    console.log(message);
-  } 
-
   checkUsernameCallback(error) {
-    console.log(error);
     if (error) {
       this.setState({ error });
     } else {
@@ -94,7 +89,13 @@ class LoginPage extends Component {
               <Form.Group inline>
                 <Form.Field control={Button}>{ buttonText }</Form.Field>
                 { !this.signup
-                  && <Form.Field control={Button} onClick={this.onSignup}>Create Account</Form.Field>
+                  && (
+                    <Form.Field
+                      control={Button}
+                      onClick={this.onSignup}
+                    > Create Account
+                    </Form.Field>
+                  )
                 }
               </Form.Group>
             </Form>

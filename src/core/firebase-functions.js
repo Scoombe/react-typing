@@ -20,7 +20,7 @@ export function createUsername(username, callback) {
 }
 
 export function checkUsername(username, callback) {
-  database.ref('usernames').orderByChild('username').equalTo(username).once('value', (snapshot) => {
+  database.ref('usernames').orderByKey().equalTo(username).once('value', (snapshot) => {
     if (snapshot.exists()) {
       callback('that username exists!');
     } else {
@@ -41,7 +41,7 @@ export function getAllScores() {
 
 }
 
-export function getUserScores(username) {
+export function getUserScores(/** username */) {
 
 }
 
