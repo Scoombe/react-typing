@@ -6,7 +6,7 @@ import { Grid, Message } from 'semantic-ui-react';
 import Test from './Components/Test';
 import Finish from './Components/Finish';
 import './TypingTest.css';
-import { createScore } from '../../core/firebase-functions';  
+import { createScore } from '../../core/firebase-functions';
 
 let wordsPerMinTest = require('wpmtest');
 // eslint-disable-next-line prefer-destructuring
@@ -93,10 +93,11 @@ class TypingTest extends Component {
     const {
       wordCount,
       averageWPM,
+      minutes,
     } = this.wordsTest;
     const score = {
-      wordCount,
-      wpm: averageWPM,
+      wpm: wordCount / minutes,
+      averageWPM: averageWPM.toFixed(2),
     };
     createScore(score, this.createScoreCallback);
   }

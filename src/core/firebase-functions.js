@@ -52,13 +52,19 @@ export function getUsername(userId, callback) {
 }
 
 export function createScore(score, callback) {
+  if (score.wordCount === 0) {
+    callback({ error: false, signedIn: true });
+    return;
+  }
   if (auth.currentUser) {
     const userScore = score;
-    userScore.userId = auth.currentUser.Id;
-    database.ref('scores').push(userScore).then(() => {
-      callback({ error: false, signIn: true });
-    }).catch(() => {
-      callback({ error: true, signedIn: true });
+    getUsername(auth.currentUser.uid, (username) => {
+      userScore.username = username;
+      database.ref('scores').push(userScore).then(() => {
+        callback({ error: false, signedIn: true });
+      }).catch(() => {
+        callback({ error: true, signedIn: true });
+      });
     });
   } else {
     callback({ error: false, signedIn: false });
@@ -66,9 +72,14 @@ export function createScore(score, callback) {
 }
 
 export function getAllScores() {
-
+  database.ref('scores').orderByChild();
 }
 
+export function getTop100Scores(callback) {
+  database.ref('scores').orderByChild('wpm').limitToFirst(100).once('value', (snapshot) => {
+    callback(snapshot);
+  });
+}
 export function getUserScores(/** username */) {
 
 }
