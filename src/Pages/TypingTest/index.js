@@ -16,7 +16,7 @@ class TypingTest extends Component {
   constructor(props) {
     super(props);
     // eslint-disable-next-line new-cap
-    this.wordsTest = new wordsPerMinTest(() => { this.finishedFunction(); }, 0.1);
+    this.wordsTest = new wordsPerMinTest(() => { this.finishedFunction(); }, 0.5);
     this.finishedFunction = this.finishedFunction.bind(this);
     this.createScoreCallback = this.createScoreCallback.bind(this);
     this.getDisplayText = this.getDisplayText.bind(this);
@@ -25,11 +25,17 @@ class TypingTest extends Component {
     this.restartTest = this.restartTest.bind(this);
     this.renderFinish = this.renderFinish.bind(this);
     this.renderTest = this.renderTest.bind(this);
+    this.wordsTest.interrupted = false;
     this.state = {
       finished: false,
       error: '',
       message: '',
     };
+  }
+
+  componentWillUnmount() {
+    this.wordsTest.finishStopWatch();
+    this.wordsTest.interrupted = true;
   }
 
   getStats() {
@@ -99,7 +105,11 @@ class TypingTest extends Component {
       wpm: wordCount / minutes,
       averageWPM: averageWPM.toFixed(2),
     };
-    createScore(score, this.createScoreCallback);
+    if (this.wordsTest.interrupted) {
+      this.wordsTest.interrupted = false;
+    } else {
+      createScore(score, this.createScoreCallback);
+    }
   }
 
   createScoreCallback(callbackObj) {
