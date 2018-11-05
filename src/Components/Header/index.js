@@ -11,7 +11,6 @@ class TypingHeader extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
-    console.log(`typingHeader username: ${props.userName}`);
   }
 
   handleClick(e) {
@@ -52,7 +51,7 @@ class TypingHeader extends Component {
                 </Header>
               </Segment>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column data-route="/scores" onClick={this.handleClick}>
               <Segment inverted color="green">
                 <Header as="h2" icon>
                   <Icon name="trophy" />

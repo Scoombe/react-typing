@@ -6,6 +6,7 @@ import {
 import TypingTest from '../../Pages/TypingTest';
 import TypingHeader from '../Header';
 import LoginPage from '../../Pages/LoginPage';
+import ScoresPage from '../../Pages/ScoresPage';
 import { firebaseAuth as auth } from '../../config/fire';
 import { getUsername } from '../../core/firebase-functions';
 
@@ -47,6 +48,7 @@ class App extends Component {
           <Route exact path="/" component={TypingTest} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/signup" component={LoginPage} />
+          <Route exact path="/scores" component={ScoresPage} />
         </Switch>
       </div>
     );

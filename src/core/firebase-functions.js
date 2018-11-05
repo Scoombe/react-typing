@@ -1,5 +1,9 @@
 import { firebaseAuth as auth, firebaseDB as database } from '../config/fire';
 
+export function isUserOn() {
+  return auth.currentUser;
+}
+
 export function createUser(email, password, callback) {
   auth.createUserWithEmailAndPassword(email, password).then(() => {
     callback(false);
@@ -51,19 +55,50 @@ export function getUsername(userId, callback) {
   });
 }
 
-
-export function getAllScores() {
-
+export function createScore(score, callback) {
+  if (score.wpm === 0) {
+    callback({ error: false, signedIn: true });
+  } else if (auth.currentUser) {
+    const userScore = score;
+    getUsername(auth.currentUser.uid, (username) => {
+      userScore.username = username;
+      database.ref('scores').push(userScore).then(() => {
+        callback({ error: false, signedIn: true });
+      }).catch(() => {
+        callback({ error: true, signedIn: true });
+      });
+    });
+  } else {
+    callback({ error: false, signedIn: false });
+  }
 }
 
+export function getAllScores() {
+  database.ref('scores').orderByChild();
+}
+
+export function getTop100Scores(callback) {
+  database.ref('scores').orderByChild('wpm').limitToLast(100).once('value', (snapshot) => {
+    callback(snapshot);
+  });
+}
 export function getUserScores(/** username */) {
 
 }
 
-export function getScoresOfTheDay() {
-
+export function getUsersTopScores(callback) {
+  if (auth.currentUser) {
+    getUsername(auth.currentUser.uid, (username) => {
+      database.ref('scores').orderByChild('wpm')
+        .on('child_added', (snapshot) => {
+          if (snapshot.val().username === username) {
+            callback(snapshot);
+          }
+        });
+    });
+  }
 }
 
-export function createScore() {
+export function getScoresOfTheDay() {
 
 }
