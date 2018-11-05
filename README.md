@@ -11,7 +11,14 @@ https://kind-dubinsky-3fba6b.netlify.com
 
 
 ### Screenshots
+
+#### Typing 
 ![react-typing screenshot](https://github.com/Scoombe/react-typing/blob/master/screenshots/typing-screen-shot.png)
 
+#### Scores
+![finished typing screenshot](https://github.com/Scoombe/react-typing/blob/master/screenshots/finished-screen-shot.png)
+
+#### Finished Test
+![user scores screenshot](https://github.com/Scoombe/react-typing/blob/master/screenshots/scores-screen-shot.png)
 
 

@@ -48,6 +48,7 @@ class ScoresPage extends Component {
 
   componentDidMount() {
     this.authListener();
+    this.getScores();
   }
 
   getScores() {
